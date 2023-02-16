@@ -1,0 +1,62 @@
+<h2>Benvenuti nel progetto {{ title }}</h2>
+
+<h3 *ngIf="!isValid">Elenco Corsi</h3>
+
+<table class="table table-hover" *ngIf="!isValid">
+  <thead>
+    <tr>
+      <th></th>
+      <th>TITOLO</th>
+      <th></th>
+      <th>COSTO</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let corso of corsi">
+      <td></td>
+      <td>{{ corso.titolo }}</td>
+      <td></td>
+      <td>{{ corso.costo }}</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>
+        <a
+          href="javascript:void(0)"
+          (click)="viewCorso(corso)"
+          course="corso"
+          *ngIf="!isValid"
+          ><i class="fa fa-eye" aria-hidden="true"></i>
+        </a>
+      </td>
+      <td>
+        <a
+          href="javascript:void(0)"
+          (click)="deleteCorso(item)"
+          *ngIf="!isValid"
+        >
+          <i class="fa fa-trash" aria-hidden="true"></i>
+        </a>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<h3 *ngIf="isNotValid">Hai Selezionato il corso: {{ item.titolo }}</h3>
+<div *ngIf="isNotValid">
+  <button (click)="tornaDietro()" class="btn btn-primary" *ngIf="isNotValid">
+    Torna alla lista
+  </button>
+  <ul class="list-group">
+    <li class="list-group-item list-group-item-success">ID: {{ item.id }}</li>
+    <li class="list-group-item list-group-item-success">Titolo: {{ item.titolo }}</li>
+    <li class="list-group-item list-group-item-success">Durata: {{ item.durata }}</li>
+    <li class="list-group-item list-group-item-success">Costo: {{ item.costo }}</li>
+    <li class="list-group-item list-group-item-success">Docente: {{ item.docente }}</li>
+    <li class="list-group-item list-group-item-success">Attivo: {{ item.attivo }}</li>
+  </ul>
+</div>
